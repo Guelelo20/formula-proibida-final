@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, memo } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle, Share2, ThumbsUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FunnelFooter } from "@/components/funnel-shared";
 import { useDelayedCta } from "@/hooks/use-delayed-cta";
@@ -15,10 +15,10 @@ const VTURB_PLAYER_ID = "vid-6acf3d7df6a57d8e37bca74a";
 const VTURB_SCRIPT_SRC = "https://scripts.converteai.net/91631d8d-48d6-404d-9bf8-651168f7152e/players/6acf3d7df6a57d8e37bca74a/v4/player.js";
 
 const testimonials = [
-  { name: "Joaquim António", image: joaquim.url, text: "Estava com receio de adquirir o vosso produto porque já tentei de todo produto que existe para potência. Eu pensei que era mais uma burla, mas depois de fazer o pagamento, recebi o acesso ao truque do Nigeriano pelo meu e-mail de forma instantânea. Já estou usar a duas semanas e os resultados estão sendo incrível na cama com a minha parceira. Até não estou a acreditar que também o meu pénis aumentou de tamanho." },
-  { name: "Adriano Miguel", image: adriano.url, text: "A informação chegou rapidamente e consegui começar no mesmo dia. Para mim, a mudança na confiança já valeu muito a pena." },
-  { name: "Fernando Luís", image: fernando.url, text: "Eu procurava uma solução natural há bastante tempo. Estou a fazer tudo direitinho e gostei muito do que senti até agora." },
-  { name: "João Baptista", image: joao.url, text: "Obrigado pela explicação clara no vídeo. Estou muito mais confiante e a minha esposa também percebeu a diferença." },
+  { name: "Joaquim António", image: joaquim.url, age: "3 min", likes: 48, text: "Estava com receio de adquirir o vosso produto porque já tentei de todo produto que existe para potência. Eu pensei que era mais uma burla, mas depois de fazer o pagamento, recebi o acesso ao truque do Nigeriano pelo meu e-mail de forma instantânea. Já estou usar a duas semanas e os resultados estão sendo incrível na cama com a minha parceira. Até não estou a acreditar que também o meu pénis aumentou de tamanho." },
+  { name: "Adriano Miguel", image: adriano.url, age: "53 min", likes: 35, text: "A informação chegou rapidamente e consegui começar no mesmo dia. Para mim, a mudança na confiança já valeu muito a pena." },
+  { name: "Fernando Luís", image: fernando.url, age: "1 h", likes: 28, text: "Eu procurava uma solução natural há bastante tempo. Estou a fazer tudo direitinho e gostei muito do que senti até agora." },
+  { name: "João Baptista", image: joao.url, age: "2 h", likes: 51, text: "Obrigado pela explicação clara no vídeo. Estou muito mais confiante e a minha esposa também percebeu a diferença." },
 ];
 
 export const Route = createFileRoute("/")({
@@ -48,7 +48,7 @@ const VslPlayer = memo(function VslPlayer() {
     <div
       className="vsl-wrap"
       dangerouslySetInnerHTML={{
-        __html: `<vturb-smartplayer id="${VTURB_PLAYER_ID}" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 178.21782178217822% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>`,
+        __html: `<vturb-smartplayer id="${VTURB_PLAYER_ID}" style="display: block; margin: 0 auto; width: 100%; max-width: 760px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 178.21782178217822% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>`,
       }}
     />
   );
@@ -85,6 +85,10 @@ function Index() {
       </header>
       <section className="vsl-section" aria-label="Apresentação da Fórmula Proibida">
         <VslPlayer />
+        <div className="social-summary" aria-label="Interações do vídeo">
+          <div className="social-count"><span className="like-badge" aria-hidden="true"><ThumbsUp /></span><strong>457</strong><span>15 comentários · 13 partilhas</span></div>
+          <div className="social-actions"><span><ThumbsUp aria-hidden="true" />Gosto</span><span><MessageCircle aria-hidden="true" />Comentar</span><span><Share2 aria-hidden="true" />Partilhar</span></div>
+        </div>
         {ctaVisible && (
           <div className="delayed-cta">
             <Button variant="funnel" asChild>
@@ -99,9 +103,12 @@ function Index() {
           {testimonials.map((testimonial) => (
             <article className="testimonial" key={testimonial.name}>
               <img src={testimonial.image} alt={testimonial.name} width={86} height={86} loading="lazy" />
-              <div className="testimonial-bubble">
-                <h3>{testimonial.name}</h3>
-                <p>{testimonial.text}</p>
+              <div className="testimonial-body">
+                <div className="testimonial-bubble">
+                  <h3>{testimonial.name}</h3>
+                  <p>{testimonial.text}</p>
+                </div>
+                <div className="testimonial-meta"><span>{testimonial.age}</span><strong>Gosto</strong><strong>Responder</strong><span className="meta-likes">+ {testimonial.likes}</span></div>
               </div>
             </article>
           ))}
