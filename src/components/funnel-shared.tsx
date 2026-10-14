@@ -1,10 +1,12 @@
 import { Globe, ShieldCheck } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import formula from "@/assets/formula.asset.json";
 
 export function FunnelHeader() {
   return <header className="funnel-header"><div className="funnel-header-inner">
     <div className="header-secure"><ShieldCheck aria-hidden="true" /><span>FINALIZE A SUA COMPRA</span></div>
+    <nav className="funnel-nav" aria-label="Navegação do funil"><Link to="/">Início</Link><Link to="/checkout">Checkout</Link><Link to="/pagamento">Pagamento</Link></nav>
     <div className="header-country"><Globe aria-hidden="true" /><span>AO Angola</span></div>
   </div></header>;
 }
