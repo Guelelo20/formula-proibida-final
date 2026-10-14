@@ -18,13 +18,6 @@ export function newOrderCode() {
   crypto.getRandomValues(bytes);
   return `FP-${String((bytes[0] ?? 0) % 100000).padStart(5, "0")}`;
 }
-export function parseOrderSearch(search: Record<string, unknown>) {
-  return {
-    consulta: search['consulta'] === true || search['consulta'] === "true",
-    guia: search['guia'] === true || search['guia'] === "true",
-    pedido: typeof search['pedido'] === "string" && /^FP-\d{5}$/.test(search['pedido']) ? search['pedido'] : undefined,
-  };
-}
 export function pageHead(title: string, description: string) {
   return { meta: [
     { title }, { name: "description", content: description },

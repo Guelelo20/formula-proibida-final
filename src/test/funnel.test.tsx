@@ -1,7 +1,7 @@
 import { act, renderHook } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { useDelayedCta } from "@/hooks/use-delayed-cta";
-import { CTA_DELAY_MS, PAYMENT_ENTITY, PAYMENT_REFERENCE, WHATSAPP_MESSAGE, WHATSAPP_URL, formatKz, newOrderCode, orderTotal, parseOrderSearch, validCustomer } from "@/lib/funnel";
+import { CTA_DELAY_MS, PAYMENT_ENTITY, PAYMENT_REFERENCE, WHATSAPP_MESSAGE, WHATSAPP_URL, formatKz, newOrderCode, orderTotal, validCustomer } from "@/lib/funnel";
 
 afterEach(() => vi.useRealTimers());
 describe("Funnel rules", () => {
@@ -41,6 +41,4 @@ describe("Funnel rules", () => {
     expect(WHATSAPP_MESSAGE).toBe("já fiz o pagamento e abaixo deixo o comprovativo esperando receber a receita em pdf");
     expect(new URL(WHATSAPP_URL).searchParams.get("text")).toBe(WHATSAPP_MESSAGE);
   });
-  it("preserves selected additions across the payment URL", () => expect(parseOrderSearch({ consulta: "true", guia: true, pedido: "FP-12345" })).toEqual({ consulta: true, guia: true, pedido: "FP-12345" }));
-  it("does not accept an arbitrary price or invalid order code", () => expect(parseOrderSearch({ total: 1, consulta: "false", guia: "false", pedido: "fake" })).toEqual({ consulta: false, guia: false, pedido: undefined }));
 });
