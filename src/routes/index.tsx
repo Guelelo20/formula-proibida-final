@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, memo } from "react";
-import { ArrowRight, MessageCircle, Share2, ThumbsUp } from "lucide-react";
+import { ArrowRight, MessageCircle, Share2, ShoppingBag, ThumbsUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDelayedCta } from "@/hooks/use-delayed-cta";
+import { useDemoPurchaseNotification } from "@/hooks/use-demo-purchase-notification";
 import { formatCountdown, useDemoCountdown } from "@/hooks/use-demo-countdown";
 import { pageHead } from "@/lib/funnel";
 
@@ -61,11 +62,29 @@ const DemoTimer = memo(function DemoTimer() {
   );
 });
 
+function DemoPurchaseNotification() {
+  const { notification, visible } = useDemoPurchaseNotification();
+
+  if (!visible) return null;
+
+  return (
+    <aside className="demo-purchase-notification" aria-label="Notificação de demonstração">
+      <span className="demo-purchase-icon" aria-hidden="true"><ShoppingBag /></span>
+      <span className="demo-purchase-copy">
+        <strong>Demonstração de compra</strong>
+        <span>{notification.name}, {notification.location}</span>
+        <small>acabou de adquirir o acesso</small>
+      </span>
+    </aside>
+  );
+}
+
 function Index() {
   const ctaVisible = useDelayedCta();
 
   return (
     <main className="sales-page">
+      <DemoPurchaseNotification />
       <div className="sales-topbar">
         <DemoTimer />
       </div>

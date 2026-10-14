@@ -187,6 +187,13 @@ button, input, a { -webkit-tap-highlight-color: transparent; }
 .funnel-button:hover { background: color-mix(in oklch, var(--primary) 90%, var(--foreground)); }
 .copy-button { background: var(--background); color: var(--muted-foreground); border: 1px solid var(--border); border-radius: 12px; width: 46px; height: 46px; }
 .sales-page { background: var(--sales-background); color: var(--sales-foreground); min-height: 100vh; }
+.demo-purchase-notification { position: fixed; top: 136px; right: max(16px, calc(50% - 560px)); z-index: 20; display: flex; align-items: center; gap: 11px; width: min(270px, calc(100vw - 32px)); padding: 12px 14px; border: 1px solid #333841; border-radius: 14px; background: #12151b; color: #f1f2f4; box-shadow: 0 8px 24px rgb(0 0 0 / 0.28); pointer-events: none; animation: demo-notification-in .35s ease-out; }
+.demo-purchase-icon { display: grid; place-items: center; width: 32px; height: 32px; flex: 0 0 auto; border-radius: 50%; background: #168cf2; color: #fff; }
+.demo-purchase-icon svg { width: 17px; height: 17px; }
+.demo-purchase-copy { display: grid; min-width: 0; gap: 2px; line-height: 1.25; }
+.demo-purchase-copy strong { font-size: 12px; font-weight: 700; }
+.demo-purchase-copy span, .demo-purchase-copy small { overflow: hidden; color: #c4c7ce; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.demo-purchase-copy small { color: #8f949e; font-size: 11px; }
 .sales-topbar { background: #e30620; padding: 24px 20px; text-align: center; color: #fff; font-size: clamp(23px, 3.3vw, 36px); font-weight: 800; }
 .sales-topbar span { color: #fff; }
 .demo-timer-row { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
@@ -297,8 +304,14 @@ vturb-smartplayer { display: block; margin: 0 auto; width: 100% !important; max-
 .payment-whatsapp { width: 100%; margin-top: 22px; }
 .back-link { display: flex; justify-content: center; font-size: 14px; color: var(--muted-foreground); margin: 20px 0; gap: 8px; align-items: center; }
 @keyframes reveal-cta { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes demo-notification-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes cta-pulse { 0%,100% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--primary) 35%, transparent); } 65% { box-shadow: var(--pulse-shadow); } }
 @media (max-width: 600px) {
+  .demo-purchase-notification { top: 82px; right: 12px; width: min(235px, calc(100vw - 24px)); padding: 10px 11px; opacity: .96; }
+  .demo-purchase-icon { width: 28px; height: 28px; }
+  .demo-purchase-copy strong { font-size: 11px; }
+  .demo-purchase-copy span { font-size: 11px; }
+  .demo-purchase-copy small { font-size: 10px; }
   .sales-topbar { padding: 12px 12px; font-size: 12px; }
   .demo-timer-row { gap: 8px; }
   .demo-timer { min-width: 72px; height: 32px; padding: 2px 8px; border-radius: 5px; font-size: 19px; }
