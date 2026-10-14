@@ -1,7 +1,6 @@
 import { Globe, ShieldCheck } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import formula from "@/assets/formula.asset.json";
 
 export function FunnelHeader() {
   return <header className="funnel-header"><div className="funnel-header-inner">
@@ -18,7 +17,7 @@ export function StepTitle({ number, children }: { number: number; children: Reac
 }
 export function ProductSummary() {
   return <section className="checkout-section"><p className="eyebrow">VOCÊ ESTÁ ADQUIRINDO:</p>
-    <div className="product-summary"><img src={formula.url} alt="Fórmula Proibida" /><div>
+    <div className="product-summary"><img src="/images/checkout/WhatsApp_Image_2026-10-14_at_08.38.41_(1).jpeg" alt="Fórmula Proibida" /><div>
       <h1>FÓRMULA PROIBIDA</h1><p>Produto digital em PDF com orientações sobre bem-estar e intimidade. Conteúdo destinado a adultos.</p><p className="price">5.900 Kz</p>
     </div></div>
   </section>;

@@ -1,11 +1,14 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { UserRound, Phone, ShieldCheck, Stethoscope } from "lucide-react";
+import { UserRound, Phone, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FunnelHeader, FunnelFooter, ProductSummary, StepTitle } from "@/components/funnel-shared";
 import { formatKz, newOrderCode, orderTotal, pageHead, validCustomer } from "@/lib/funnel";
-import banner from "@/assets/banner.asset.json";
-import guideImage from "@/assets/guide.asset.json";
+const checkoutImages = {
+  banner: "/images/checkout/WhatsApp_Image_2026-10-14_at_08.38.41_(2).jpeg",
+  consultation: "/images/checkout/WhatsApp_Image_2026-10-14_at_08.38.40.jpeg",
+  guide: "/images/checkout/WhatsApp_Image_2026-10-14_at_08.38.41.jpeg",
+};
 
 export const Route = createFileRoute("/checkout")({
   head: () => pageHead("Checkout — Fórmula Proibida", "Finalize a compra do PDF Fórmula Proibida por 5.900 Kz. Escolha os adicionais opcionais e pague por referência em Angola."),
@@ -26,7 +29,7 @@ function Checkout() {
     void navigate({ to: "/pagamento", search: { consulta: consultation, guia: guide, pedido: newOrderCode() } });
   }
   return <><FunnelHeader /><main className="checkout-main">
-    <img className="checkout-banner" src={banner.url} alt="Fórmula Proibida — apresentação do produto digital" />
+    <img className="checkout-banner" src={checkoutImages.banner} alt="Fórmula Proibida — apresentação do produto digital" />
     <ProductSummary />
     <form onSubmit={submit}>
       <section className="checkout-section"><StepTitle number={1}>DADOS PESSOAIS</StepTitle>
@@ -37,8 +40,8 @@ function Checkout() {
       </section>
       <section className="checkout-section"><StepTitle number={2}>MÉTODO DE PAGAMENTO</StepTitle><div className="payment-method" aria-label="Método selecionado: Pagar por Referência"><div className="payment-method-top"><span className="multicaixa-mark" aria-hidden="true">✺</span><span className="selected" /></div><strong>Pagar por Referência</strong></div></section>
       <section className="checkout-section"><StepTitle number={3}>OFERTAS EXCLUSIVAS</StepTitle>
-        <label className="bump-option"><input type="checkbox" checked={consultation} onChange={(event) => setConsultation(event.target.checked)} aria-label="Adicionar Consulta" /><span className="consultation-placeholder"><Stethoscope aria-hidden="true" /></span><span><strong>Consulta</strong><p>Por apenas 5.000 Kz</p><small>Detalhes da consulta: a fornecer.</small></span></label>
-        <label className="bump-option"><input type="checkbox" checked={guide} onChange={(event) => setGuide(event.target.checked)} aria-label="Adicionar Guia adicional" /><img src={guideImage.url} alt="Capa do guia adicional" /><span><strong>Guia adicional</strong><p>Por apenas 2.500 Kz</p></span></label>
+        <label className="bump-option"><input type="checkbox" checked={consultation} onChange={(event) => setConsultation(event.target.checked)} aria-label="Adicionar Consulta" /><img src={checkoutImages.consultation} alt="Profissional disponível para a consulta" /><span><strong>Consulta</strong><p>Por apenas 5.000 Kz</p><small>Detalhes da consulta: a fornecer.</small></span></label>
+        <label className="bump-option"><input type="checkbox" checked={guide} onChange={(event) => setGuide(event.target.checked)} aria-label="Adicionar Guia adicional" /><img src={checkoutImages.guide} alt="Capa do guia adicional" /><span><strong>Guia adicional</strong><p>Por apenas 2.500 Kz</p></span></label>
       </section>
       <section className="checkout-section"><div className="total-row subtotal"><span>Subtotal</span><strong>{formatKz(total)}</strong></div><div className="total-row grand-total" aria-live="polite"><span>TOTAL A PAGAR</span><strong data-testid="checkout-total">{formatKz(total)}</strong></div>
         <Button type="submit" variant="funnel" className="purchase-button" disabled={!valid}><ShieldCheck aria-hidden="true" />FINALIZAR COMPRA</Button>
