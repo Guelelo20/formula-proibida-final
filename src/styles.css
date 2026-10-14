@@ -226,21 +226,12 @@ vturb-smartplayer { display: block; margin: 0 auto; width: 100% !important; max-
 .testimonial-meta { display: flex; align-items: center; gap: 28px; padding: 16px 18px 0; color: #9b9ea6; font-size: 20px; }
 .testimonial-meta strong { color: #aeb0b7; }
 .meta-likes { margin-left: auto; background: #151d29; border-radius: 22px; padding: 8px 16px; color: #aeb0b7; }
-.testimonial-disclaimer { color: var(--sales-muted); font-size: 13px; line-height: 1.6; margin: 0; }
 .sales-banner { width: 100%; border-radius: 18px; }
 .sales-product { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 24px; padding: 38px 0; border-bottom: 1px solid var(--sales-border); }
 .sales-product img { border-radius: 16px; }
 .sales-product h2 { font-size: 25px; margin: 0 0 12px; font-weight: 800; }
 .sales-product p { color: var(--sales-muted); line-height: 1.65; margin: 0; font-size: 16px; }
 .sales-product .price { color: var(--headline-red); font-size: 28px; font-weight: 800; margin-top: 16px; }
-.sales-information { padding: 30px 0; border-bottom: 1px solid var(--sales-border); }
-.sales-information h2 { font-size: 18px; font-weight: 700; margin: 0 0 20px; }
-.sales-information p { color: var(--sales-muted); font-size: 15px; line-height: 1.7; margin: 0; }
-.placeholder-note { border: 1px dashed var(--sales-border); border-radius: 8px; padding: 20px; color: var(--sales-muted); font-size: 14px; line-height: 1.6; }
-.sales-faq details { border-bottom: 1px solid var(--sales-border); padding: 18px 0; }
-.sales-faq details:last-child { border: 0; padding-bottom: 0; }
-.sales-faq summary { cursor: pointer; font-weight: 600; font-size: 17px; }
-.sales-faq details p { margin-top: 14px; }
 .funnel-footer { padding: 30px 20px; text-align: center; font-size: 12px; line-height: 1.8; color: var(--muted-foreground); }
 .sales-page .funnel-footer { color: var(--sales-muted); }
 .funnel-header { background: var(--primary); color: var(--primary-foreground); }
